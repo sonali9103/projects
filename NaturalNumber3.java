@@ -86,8 +86,7 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         }
 
     }
-
-    /**
+/**
      * Constructor from {@code NaturalNumber}.
      *
      * @param n
@@ -96,7 +95,14 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     public NaturalNumber3(NaturalNumber n) {
         assert n != null : "Violation of: n is not null";
 
-        // TODO - fill in body
+        // Convert NaturalNumber to string representation & assign to this.rep
+        this.rep = n.toString();
+       
+//        if (n.isZero()) {
+//            this.rep = "";
+//        } else {
+//            this.rep = n.toString();
+//        }
 
     }
 
@@ -143,26 +149,71 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         assert 0 <= k : "Violation of: 0 <= k";
         assert k < RADIX : "Violation of: k < 10";
 
-        // TODO - fill in body
-
+        // if this.rep in an empty string it assigns it to zero
+        if(this.rep == "") {
+            this.rep = "0";
+        }
+        
+        // If value is already "" ("" represents 0) & k is 0
+        if (this.rep.equals("") && k == 0) {
+            return; 
+        }
+        
+        // If value is "" and k is non-zero.
+        else if (this.rep.equals("")) {
+            this.rep = Integer.toString(k);
+        } 
+        
+        // Append k to the end.
+        else {
+            this.rep += Integer.toString(k);
+        }
+    
     }
 
     @Override
     public final int divideBy10() {
 
-        // TODO - fill in body
-
-        // This line added just to make the component compilable.
-        return 0;
+        // If string is empty or zero it will equal 0
+        if (this.rep.equals("") || this.rep.equals("0")) {
+            return 0;
+        }
+        
+        // Get last character of number
+        char lastDigit = this.rep.charAt(this.rep.length() - 1);
+        
+        // remove the last digit from string representation 
+        this.rep = this.rep.substring(0, this.rep.length() - 1);
+        
+        // if after removing last digit it becomes an empty string we put 0
+        if (this.rep.isEmpty()) {
+            this.rep = "0";
+        }
+        // return digit that was the remainder
+        return Character.getNumericValue(lastDigit);
     }
 
     @Override
     public final boolean isZero() {
+        
+        // variable to store result
+        boolean isZeroValue;
 
-        // TODO - fill in body
+        // Check if value is "0"
+        boolean isExplicitZero = this.rep.equals("0");
 
-        // This line added just to make the component compilable.
-        return false;
+        // Check if value is an empty string
+        boolean isEmptyRepresentation = this.rep.equals("");
+
+        // If either the value is "0" or an empty string the number is zero
+        if (isExplicitZero || isEmptyRepresentation) {
+            isZeroValue = true;
+        } else {
+            isZeroValue = false;
+        }
+
+        // Return the result
+        return isZeroValue;
     }
 
 }
