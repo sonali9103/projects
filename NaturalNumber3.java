@@ -97,6 +97,11 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         assert n != null : "Violation of: n is not null";
 
         // TODO - fill in body
+        if (n.isZero()) {
+            this.rep = "";
+        } else {
+            this.rep = n.toString();
+        }
 
     }
 
@@ -144,6 +149,15 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         assert k < RADIX : "Violation of: k < 10";
 
         // TODO - fill in body
+         // if this.rep in an empty string it assigns it to zero
+        if (this.rep == "") {
+            this.rep = "0";
+        }
+
+        // Append k to the end.
+        else {
+            this.rep += Integer.toString(k);
+        }
 
     }
 
@@ -151,18 +165,47 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     public final int divideBy10() {
 
         // TODO - fill in body
+         // If string is empty or zero it will equal 0
+        if (this.rep.equals("") || this.rep.equals("0")) {
+            return 0;
+        }
 
-        // This line added just to make the component compilable.
-        return 0;
+        // Get last character of number
+        char lastDigit = this.rep.charAt(this.rep.length() - 1);
+
+        // remove the last digit from string representation
+        this.rep = this.rep.substring(0, this.rep.length() - 1);
+
+        // if after removing last digit it becomes an empty string we put 0
+        if (this.rep.isEmpty()) {
+            this.rep = "0";
+        }
+        // return digit that was the remainder
+        return Character.getNumericValue(lastDigit);
     }
 
     @Override
     public final boolean isZero() {
 
         // TODO - fill in body
+// variable to store result
+        boolean isZeroValue;
 
-        // This line added just to make the component compilable.
-        return false;
+        // Check if value is "0"
+        boolean isExplicitZero = this.rep.equals("0");
+
+        // Check if value is an empty string
+        boolean isEmptyRepresentation = this.rep.equals("");
+
+        // If either the value is "0" or an empty string the number is zero
+        if (isExplicitZero || isEmptyRepresentation) {
+            isZeroValue = true;
+        } else {
+            isZeroValue = false;
+        }
+
+        // Return the result
+        return isZeroValue;
     }
 
 }
