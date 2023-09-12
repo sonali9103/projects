@@ -14,7 +14,7 @@ import components.naturalnumber.NaturalNumberSecondary;
  *         else the decimal number whose ordinary depiction is $this.rep]
  * </pre>
  *
- * @author Put your name here
+ * @author Sonali Manoharan, Jana Abedeljaber
  *
  */
 public class NaturalNumber3 extends NaturalNumberSecondary {
@@ -34,6 +34,7 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     private void createNewRep() {
 
         // TODO - fill in body
+        this.rep = "";
 
     }
 
@@ -47,6 +48,7 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
     public NaturalNumber3() {
 
         // TODO - fill in body
+        this.createNewRep();
 
     }
 
@@ -60,6 +62,8 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
         assert i >= 0 : "Violation of: i >= 0";
 
         // TODO - fill in body
+        this.createNewRep();
+        this.rep = Integer.toString(i);
 
     }
 
@@ -75,6 +79,11 @@ public class NaturalNumber3 extends NaturalNumberSecondary {
                 + "Violation of: there exists n: NATURAL (s = TO_STRING(n))";
 
         // TODO - fill in body
+        this.createNewRep();
+        if(!this.rep.equals("0"))
+        {
+            this.rep = s;
+        }
 
     }
 
